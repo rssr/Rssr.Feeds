@@ -45,8 +45,21 @@ class Rss extends AbstractFeed
         'updateTime'    => 'pubDate',
         'summary'       => 'description',
         'content'       => 'description',
+        'contentType'   => ''
         'author'        => '',
     ];
+
+    /**
+     * Initialize the RSS feed
+     * @param \SimpleXMLElement $xml
+     */
+    public function __construct(SimpleXMLElement $xml)
+    {
+        $this->storyKeys['contentType'] = function()
+        {
+            return 'html';
+        };
+    }
 
     /**
      * return the content
