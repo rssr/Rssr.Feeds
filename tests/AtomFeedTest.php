@@ -14,7 +14,8 @@ class AtomFeedTest extends \PHPUnit_Framework_TestCase
         $log = new Logger('phpunit');
         $log->pushHandler(new StreamHandler('./phpunit.log', Logger::WARNING));
 
-        $this->feed = new AtomFeed(new \SimpleXMLElement(file_get_contents('./atom.xml')));
+        $this->feed = new AtomFeed(new \SimpleXMLElement(
+            file_get_contents(__DIR__ . '/samples/atom.xml')));
     }
 
 

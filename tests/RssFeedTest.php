@@ -14,7 +14,8 @@ class RssFeedTest extends \PHPUnit_Framework_TestCase
         $log = new Logger('phpunit');
         $log->pushHandler(new StreamHandler('./phpunit.log', Logger::WARNING));
 
-        $this->feed = new RssFeed(new \SimpleXMLElement(file_get_contents('./rss.xml')));
+        $this->feed = new RssFeed(new \SimpleXMLElement(
+            file_get_contents(__DIR__ . '/samples/rss.xml')));
     }
 
 
