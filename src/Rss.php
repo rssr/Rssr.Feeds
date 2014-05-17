@@ -7,7 +7,7 @@
  * @license http://opensource.org/licenses/MIT MIT
  *
  */
-namespace Mpw\Parsser;
+namespace Mpw\Parsser\Feed;
 
 /**
  *
@@ -16,7 +16,7 @@ namespace Mpw\Parsser;
  * @package Mpw\Parsser
  * 
  */
-class RssFeed extends Feed
+class Rss extends AbstractFeed
 {
 
     const FEED_TYPE = 'RSS';

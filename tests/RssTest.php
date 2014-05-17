@@ -2,11 +2,10 @@
 
 namespace Mpw\Tests;
 
-use Mpw\Parsser\RssFeed;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
-class RssFeedTest extends \PHPUnit_Framework_TestCase
+class RssTest extends \PHPUnit_Framework_TestCase
 {
 
     public function setUp()
@@ -14,7 +13,7 @@ class RssFeedTest extends \PHPUnit_Framework_TestCase
         $log = new Logger('phpunit');
         $log->pushHandler(new StreamHandler('./phpunit.log', Logger::WARNING));
 
-        $this->feed = new RssFeed(new \SimpleXMLElement(
+        $this->feed = new \Mpw\Parsser\Feed\Rss(new \SimpleXMLElement(
             file_get_contents(__DIR__ . '/samples/rss.xml')));
     }
 

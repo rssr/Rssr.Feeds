@@ -7,7 +7,7 @@
  * @license http://opensource.org/licenses/MIT MIT
  *
  */
-namespace Mpw\Parsser;
+namespace Mpw\Parsser\Feed;
 
 
 use Psr\Log\LoggerInterface;
@@ -20,7 +20,7 @@ use Psr\Log\NullLogger;
  * @author Matthew Wells <matthewpaulwells@gmail.com>
  * @package Mpw\Parsser
  */
-abstract class Feed implements \Psr\Log\LoggerAwareInterface
+abstract class AbstractFeed implements \Psr\Log\LoggerAwareInterface
 {
 
 

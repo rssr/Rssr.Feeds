@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Mpw\\Parsser\\": "src/Parsser/"
+            "Mpw\\Parsser\\Feed\\": "src/"
         }
     },
     "suggest": {
