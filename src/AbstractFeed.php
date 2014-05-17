@@ -9,10 +9,6 @@
  */
 namespace Rssr\Feed;
 
-
-use Psr\Log\LoggerInterface;
-use Psr\Log\NullLogger;
-
 /**
  *
  * Abstract implementation of a Feed
@@ -20,7 +16,7 @@ use Psr\Log\NullLogger;
  * @author Matthew Wells <matthewpaulwells@gmail.com>
  * @package Rssr
  */
-abstract class AbstractFeed implements \Psr\Log\LoggerAwareInterface
+abstract class AbstractFeed
 {
 
 
@@ -61,12 +57,6 @@ abstract class AbstractFeed implements \Psr\Log\LoggerAwareInterface
     protected $data;
 
     /**
-     * PSR-3 logger
-     * @var Psr\Log\LoggerInterface
-     */
-    protected $logger;
-
-    /**
      * Stories!
      * @var Array<SimpleXMLElement>
      */
@@ -77,15 +67,11 @@ abstract class AbstractFeed implements \Psr\Log\LoggerAwareInterface
      * Initialize a new Feed, given valid xml data
      * 
      * @param SimpleXMLElement $xml
-     * @param Psr\Log\LoggerInterface $logger
      */
-    public function __construct(\SimpleXMLElement $xml, $logger=null)
+    public function __construct(\SimpleXMLElement $xml)
     {
 
-        $this->setLogger($logger ?: new NullLogger);
-
         $this->data = $this->getContent($xml);
-
         $this->children = $this->getChildren($xml);
     }
 
@@ -104,15 +90,6 @@ abstract class AbstractFeed implements \Psr\Log\LoggerAwareInterface
      * @return Array<SimpleXMLElement>
      */
     abstract protected function getChildren(\SimpleXMLElement $xml);
-
-    /**
-     * Set a logger interface on $this
-     * @param LoggerInterface $logger
-     */
-    public function setLogger(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
-    }
 
     /**
      * return the array of feed stories
@@ -146,8 +123,6 @@ abstract class AbstractFeed implements \Psr\Log\LoggerAwareInterface
         if ($value->count()) {
             return $value;
         }
-
-        $this->logger->warning('could not find ' . $index);
 
         return null;
     }

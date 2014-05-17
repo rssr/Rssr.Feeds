@@ -2,17 +2,12 @@
 
 namespace Rssr\Tests;
 
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
 
 class RssTest extends \PHPUnit_Framework_TestCase
 {
 
     public function setUp()
     {
-        $log = new Logger('phpunit');
-        $log->pushHandler(new StreamHandler('./phpunit.log', Logger::WARNING));
-
         $this->feed = new \Rssr\Feed\Rss(new \SimpleXMLElement(
             file_get_contents(__DIR__ . '/samples/rss.xml')));
     }
