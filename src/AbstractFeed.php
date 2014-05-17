@@ -1,13 +1,13 @@
 <?php
 /**
  *
- * Part of Parsser RSS reader for PHP
+ * Part of Rssr RSS reader for PHP
  *
- * @package Mpw\Parsser
+ * @package Rssr
  * @license http://opensource.org/licenses/MIT MIT
  *
  */
-namespace Mpw\Parsser\Feed;
+namespace Rssr\Feed;
 
 
 use Psr\Log\LoggerInterface;
@@ -18,7 +18,7 @@ use Psr\Log\NullLogger;
  * Abstract implementation of a Feed
  * 
  * @author Matthew Wells <matthewpaulwells@gmail.com>
- * @package Mpw\Parsser
+ * @package Rssr
  */
 abstract class AbstractFeed implements \Psr\Log\LoggerAwareInterface
 {

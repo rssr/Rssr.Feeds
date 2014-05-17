@@ -1,19 +1,21 @@
 <?php
 /**
  *
- * Part of Parsser RSS reader for PHP
+ * Part of Rssr RSS reader for PHP
  *
- * @package Mpw\Parsser
+ * @package Rssr
  * @license http://opensource.org/licenses/MIT MIT
  *
  */
-namespace Mpw\Parsser\Feed;
+namespace Rssr\Feed;
+
+use SimpleXMLElement;
 
 /**
  *
  * RSS 2.0 implementation of the Feed class
  *
- * @package Mpw\Parsser
+ * @package Rssr
  * 
  */
 class Rss extends AbstractFeed
@@ -52,7 +54,7 @@ class Rss extends AbstractFeed
      * @param  SimpleXMLElement $xml
      * @return SimpleXMLElement
      */
-    protected function getContent(\SimpleXMLElement $xml)
+    protected function getContent(SimpleXMLElement $xml)
     {
         return $xml->channel;
     }
@@ -63,7 +65,7 @@ class Rss extends AbstractFeed
      * @param  SimpleXMLElement $xml
      * @return Array<SimpleXMLElement>
      */
-    protected function getChildren(\SimpleXMLElement $xml)
+    protected function getChildren(SimpleXMLElement $xml)
     {
         return $xml->channel->item;
     }

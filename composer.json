@@ -1,13 +1,13 @@
 {
-    "name": "parsser/feeds",
+    "name": "rssr/feeds",
     "description": "Simple classes for normalizing interaction with RSS and Atom feeds",
     "keywords": ["rss", "atom"],
     "license": "MIT",
-    "homepage": "https://github.com/mattwellss/Parsser.Feeds",
+    "homepage": "https://github.com/rssr/Rssr.Feeds",
     "authors" : [
         {
-            "name": "Parsser Contributors",
-            "homepage": "https://github.com/mattwellss/Parsser.Feeds/contributors"
+            "name": "Rssr Contributors",
+            "homepage": "https://github.com/rssr/Rssr.Feeds/contributors"
         }
     ],
     "require": {
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Mpw\\Parsser\\Feed\\": "src/"
+            "Rssr\\Feed\\": "src/"
         }
     },
     "suggest": {
