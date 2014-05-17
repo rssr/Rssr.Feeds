@@ -18,18 +18,7 @@ namespace Rssr\Feed;
  */
 abstract class AbstractFeed
 {
-
-
-    /**
-     * key map (unset) for feed data
-     * @var Array
-     */
-    protected $keys = [
-        'title'         => '',
-        'link'          => '',
-        'updateTime'    => '',
-        'summary'       => ''
-    ];
+    use HasKeyMap;
 
     /**
      * key map (unset) for feed story data
@@ -46,22 +35,22 @@ abstract class AbstractFeed
     ];
 
     /**
+     * special handling for particular keys
+     * @var array<callable>
+     */
+    protected $specialCases = [];
+
+
+    /**
      * @var type of feed (unset)
      */
     const FEED_TYPE = '';
-
-    /**
-     * XML data storage
-     * @var SimpleXMLElement
-     */
-    protected $data;
 
     /**
      * Stories!
      * @var Array<SimpleXMLElement>
      */
     protected $children = null;
-
 
     /**
      * Initialize a new Feed, given valid xml data
@@ -70,9 +59,14 @@ abstract class AbstractFeed
      */
     public function __construct(\SimpleXMLElement $xml)
     {
+        $this->keys['stories'] = function()
+            {
+                return $this->children;
+            };
+
 
         $this->data = $this->getContent($xml);
-        $this->children = $this->getChildren($xml);
+        $this->children = new Stories($this->getChildren($xml), $this->storyKeys);
     }
 
     /**
@@ -99,32 +93,6 @@ abstract class AbstractFeed
     public function getStories()
     {
         return $this->children;
-    }
-
-    /**
-     * Allow for simple access to data of the feed. Special case for 'stories' exists so that a method `getStories` needn't exist.
-     * 
-     * @param  String $index
-     * @return mixed
-     */
-    public function __get($index)
-    {
-
-        if ($index === 'stories') {
-            return $this->getStories();
-        }
-
-        if (!isset($this->keys[$index])) {
-            return null;
-        }
-
-        $value = $this->data->{$this->keys[$index]};
-
-        if ($value->count()) {
-            return $value;
-        }
-
-        return null;
     }
 
 

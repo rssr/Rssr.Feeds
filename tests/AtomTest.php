@@ -27,4 +27,14 @@ class AtomFeedTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->feed->stories[0]->title, 'Atom-Powered Robots Run Amok');
     }
 
+    public function testStoryUpdateTime()
+    {
+        $this->assertEquals($this->feed->stories[0]->updateTime, '2003-12-13T18:30:02Z');
+    }
+
+    public function testStoryLink()
+    {
+        $this->assertEquals($this->feed->stories[0]->link, 'http://example.org/2003/12/13/atom03');
+    }
+
 }

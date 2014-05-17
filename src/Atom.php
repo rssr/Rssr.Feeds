@@ -40,13 +40,35 @@ class Atom extends AbstractFeed
      */
     protected $storyKeys = [
         'title'         => 'title',
-        'link'          => 'link',
+        'link'          => '',
         'id'            => 'id',
         'updateTime'    => 'updated',
         'summary'       => 'summary',
         'content'       => 'content',
+        'contentType'   => '',
         'author'        => '',
     ];
+
+    /**
+     * Initialize an Atom feed
+     * 
+     * @param SimpleXMLElement $xml
+     */
+    public function __construct(SimpleXMLElement $xml)
+    {
+        $this->storyKeys['link'] = function()
+        {
+            return $this->link['@href'];
+        };
+
+        $this->storyKeys['contentType'] = function()
+        {
+            return $this->content['@type'];
+        };
+
+        parent::__construct($xml);
+
+    }
 
     /**
      * return the content
