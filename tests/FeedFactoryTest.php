@@ -6,9 +6,15 @@ use SimpleXMLElement;
 
 class FeedFactoryTest extends \PHPUnit_Framework_TestCase
 {
+
     public function setUp()
     {
         $this->factory = new \Rssr\Feed\Factory;
+    }
+
+    public function tearDown()
+    {
+        unset($this->factory);
     }
 
     public function testAtomCreation()

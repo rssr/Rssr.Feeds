@@ -56,14 +56,15 @@ class Atom extends AbstractFeed
      */
     public function __construct(SimpleXMLElement $xml)
     {
-        $this->storyKeys['link'] = function()
+
+        $this->storyKeys['link'] = function($scope)
         {
-            return $this->link['@href'];
+            return $scope->getXml()->link['href'];
         };
 
-        $this->storyKeys['contentType'] = function()
+        $this->storyKeys['contentType'] = function($scope)
         {
-            return $this->content['@type'];
+            return $scope->getXml()->content['type'];
         };
 
         parent::__construct($xml);

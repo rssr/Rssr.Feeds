@@ -20,9 +20,13 @@ use SimpleXMLElement;
  */
 class Story
 {
-
     use HasKeyMap;
 
+    /**
+     * Initialize a Story
+     * @param SimpleXMLElement $xml
+     * @param array            $keys
+     */
     public function __construct(SimpleXMLElement $xml, array $keys)
     {
         $this->keys = $keys;

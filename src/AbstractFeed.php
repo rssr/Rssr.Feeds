@@ -20,37 +20,26 @@ abstract class AbstractFeed
 {
     use HasKeyMap;
 
-    /**
-     * key map (unset) for feed story data
-     * @var Array
-     */
-    protected $storyKeys = [
-        'title'         => '',
-        'link'          => '',
-        'id'            => '',
-        'updateTime'    => '',
-        'summary'       => '',
-        'content'       => '',
-        'author'        => '',
-    ];
-
-    /**
-     * special handling for particular keys
-     * @var array<callable>
-     */
-    protected $specialCases = [];
-
 
     /**
      * @var type of feed (unset)
      */
     const FEED_TYPE = '';
 
+
+    /**
+     * key map (unset) for feed story data
+     * @var Array
+     */
+    protected $storyKeys = [];
+
+
     /**
      * Stories!
      * @var Array<SimpleXMLElement>
      */
     protected $children = null;
+
 
     /**
      * Initialize a new Feed, given valid xml data
@@ -69,6 +58,7 @@ abstract class AbstractFeed
         $this->children = new Stories($this->getChildren($xml), $this->storyKeys);
     }
 
+
     /**
      * return the element which "flattens" the Feed data to get title, description, updated time easily
      *
@@ -77,6 +67,7 @@ abstract class AbstractFeed
      */
     abstract protected function getContent(\SimpleXMLElement $xml);
 
+
     /**
      * return the stories for the given `$xml` feed
      * 
@@ -84,6 +75,7 @@ abstract class AbstractFeed
      * @return Array<SimpleXMLElement>
      */
     abstract protected function getChildren(\SimpleXMLElement $xml);
+
 
     /**
      * return the array of feed stories

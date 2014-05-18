@@ -51,6 +51,7 @@ class Rss extends AbstractFeed
 
     /**
      * Initialize the RSS feed
+     * 
      * @param \SimpleXMLElement $xml
      */
     public function __construct(SimpleXMLElement $xml)
@@ -59,6 +60,8 @@ class Rss extends AbstractFeed
         {
             return 'html';
         };
+
+        parent::__construct($xml);
     }
 
     /**

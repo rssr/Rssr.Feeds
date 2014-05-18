@@ -28,7 +28,7 @@ trait HaskeyMap
      * XML data
      * @var \SimpleXMLElement
      */
-    protected $data = null;
+    public $data = null;
 
     /**
      * Access the data!
@@ -45,12 +45,21 @@ trait HaskeyMap
 
         $value = $this->keys[$key];
 
-        if (is_callable($value)) {
-            var_dump($value);
 
-            return call_user_func($value);
+        if (gettype($value) === 'object' && is_callable($value)) {
+
+            return $value($this);
         }
 
         return $this->data->{$value};
+    }
+
+    /**
+     * get access to the XML data for attribute access, etc.
+     * @return mixed
+     */
+    public function getXml()
+    {
+        return $this->data;
     }
 }
