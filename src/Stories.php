@@ -18,11 +18,12 @@ use SimpleXMLElement;
  * @author Matthew Wells <matthewpaulwells@gmail.com>
  * @package Rssr
  */
-class Stories implements \ArrayAccess
+class Stories implements \ArrayAccess, \Iterator
 {
 
     protected $keys;
     protected $data;
+    protected $storyIndex;
 
     /**
      * this is filled lazily
@@ -79,5 +80,49 @@ class Stories implements \ArrayAccess
 
         return null;
     }
+
+    /**
+     * Return the current item in the iteration
+     * @return \Rssr\Feed\Story
+     */
+    public function current()
+    {
+        return $this->offsetGet($this->storyIndex);
+    }
+
+    /**
+     * Return the current index in the iteration
+     * @return int
+     */
+    public function key()
+    {
+        return $this->storyIndex;
+    }
+
+    /**
+     * Increment the iterator index
+     */
+    public function next()
+    {
+        $this->storyIndex += 1;
+    }
+
+    /**
+     * Reset the iterator index
+     */
+    public function rewind()
+    {
+        $this->storyIndex = 0;
+    }
+
+    /**
+     * Return the validity of the current iterator index
+     * @return Boolean
+     */
+    public function valid()
+    {
+        return $this->offsetExists($this->key());
+    }
+
 
 }
