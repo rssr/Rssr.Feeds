@@ -31,11 +31,15 @@ class Factory
 
     /**
      * Initialize a new Feed given a SimpleXMLElement
-     * @param  SimpleXMLElement $xml
+     * @param  $xml     String or SimpleXMLElement
      * @return \Rssr\Feed\Abstract      (Won't actually be abstract, but a child class of it)
      */
-    public function newFeed(SimpleXMLElement $xml)
+    public function newFeed($xml)
     {
+        if (!$xml instanceof SimpleXMLElement) {
+            $xml = simplexml_load_string($xml);
+        }
+
         if (!isset($this->types[$xml->getName()])) {
             throw new \Exception('Feed type ' . $xml->getName() . ' not supported!');
         }
