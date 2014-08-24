@@ -44,7 +44,7 @@ abstract class AbstractFeed
     /**
      * Initialize a new Feed, given valid xml data
      * 
-     * @param SimpleXMLElement $xml
+     * @param \SimpleXMLElement $xml
      */
     public function __construct(\SimpleXMLElement $xml)
     {
@@ -62,8 +62,8 @@ abstract class AbstractFeed
     /**
      * return the element which "flattens" the Feed data to get title, description, updated time easily
      *
-     *  @param  SimpleXMLElement $xml
-     * @return SimpleXMLElement
+     *  @param  \SimpleXMLElement $xml
+     * @return \SimpleXMLElement
      */
     abstract protected function getContent(\SimpleXMLElement $xml);
 
@@ -72,7 +72,7 @@ abstract class AbstractFeed
      * return the stories for the given `$xml` feed
      * 
      * @param  SimpleXMLElement $xml
-     * @return Array<SimpleXMLElement>
+     * @return Array<\SimpleXMLElement>
      */
     abstract protected function getChildren(\SimpleXMLElement $xml);
 
@@ -80,7 +80,7 @@ abstract class AbstractFeed
     /**
      * return the array of feed stories
      * 
-     * @return Array<SimpleXMLElement>
+     * @return Array<\SimpleXMLElement>
      */
     public function getStories()
     {
