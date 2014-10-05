@@ -24,10 +24,17 @@ class Factory
      * map of root XML nodes to class names
      * @var Array
      */
-    protected $types = [
-        'feed'  => '\Rssr\Feed\Atom',
-        'rss'   => '\Rssr\Feed\Rss',
-    ];
+    protected $types = [];
+
+    /**
+     * Add a feed type that will normalize feed data
+     * @param string $type
+     * @param callable $handler
+     */
+    public function addFeedType($type, callable $handler)
+    {
+        $this->types[$type] = $handler;
+    }
 
     /**
      * Initialize a new Feed given a SimpleXMLElement
@@ -44,8 +51,8 @@ class Factory
             throw new \Exception('Feed type ' . $xml->getName() . ' not supported!');
         }
 
-        $className = $this->types[$xml->getName()];
+        $handler = $this->types[$xml->getName()];
 
-        return new $className($xml);
+        return $handler($xml);
     }
 }
