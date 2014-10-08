@@ -11,7 +11,7 @@
         }
     ],
     "require-dev": {
-        "phpunit/phpunit": "4.1.*"
+        "phpunit/phpunit": "~4.2.0"
         
     },
     "autoload": {
@@ -19,5 +19,5 @@
             "Rssr\\Feed\\": "src/"
         }
     },
-    "minimum-stability": "dev"
+    "version": "0.1.0"
 }
