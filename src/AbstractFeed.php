@@ -16,7 +16,7 @@ namespace Rssr\Feed;
  * @author Matthew Wells <matthewpaulwells@gmail.com>
  * @package Rssr
  */
-abstract class AbstractFeed
+abstract class AbstractFeed implements FeedInterface
 {
     use HasKeyMap;
 
