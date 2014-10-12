@@ -27,7 +27,7 @@ class FeedFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $data = file_get_contents(__DIR__ . '/samples/rss.xml');
         $factory = $this->getFactory();
-        $factory->addHandler(\Rssr\Feed\Rss::class);
+        $factory->addHandler('\Rssr\Feed\Rss');
 
         $feed = $factory->newFeed($data);
 
@@ -38,8 +38,8 @@ class FeedFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $data = null;
         $factory = $this->getFactory();
-        $factory->addHandler(\Rssr\Feed\Rss::class);
-        $factory->addHandler(\Rssr\Feed\Atom::class);
+        $factory->addHandler('\Rssr\Feed\Rss');
+        $factory->addHandler('\Rssr\Feed\Atom');
 
         $feed = $factory->newFeed($data);
 
@@ -50,8 +50,8 @@ class FeedFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $data = [];
         $factory = $this->getFactory();
-        $factory->addHandler(\Rssr\Feed\Rss::class);
-        $factory->addHandler(\Rssr\Feed\Atom::class);
+        $factory->addHandler('\Rssr\Feed\Rss');
+        $factory->addHandler('\Rssr\Feed\Atom');
 
         $feed = $factory->newFeed($data);
 
@@ -62,8 +62,8 @@ class FeedFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $data = new \stdClass;
         $factory = $this->getFactory();
-        $factory->addHandler(\Rssr\Feed\Rss::class);
-        $factory->addHandler(\Rssr\Feed\Atom::class);
+        $factory->addHandler('\Rssr\Feed\Rss');
+        $factory->addHandler('\Rssr\Feed\Atom');
 
         $feed = $factory->newFeed($data);
 
