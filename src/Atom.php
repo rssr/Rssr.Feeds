@@ -16,7 +16,7 @@ use SimpleXMLElement;
  * ATOM implementation of the Feed class
  *
  * @package Rssr
- * 
+ *
  */
 class Atom extends AbstractFeed
 {
@@ -51,7 +51,7 @@ class Atom extends AbstractFeed
 
     /**
      * Initialize an Atom feed
-     * 
+     *
      * @param SimpleXMLElement $xml
      */
     public function __construct(SimpleXMLElement $xml)
@@ -73,7 +73,7 @@ class Atom extends AbstractFeed
 
     /**
      * return the content
-     * 
+     *
      * @param  SimpleXMLElement $xml
      * @return SimpleXMLElement
      */
@@ -84,7 +84,7 @@ class Atom extends AbstractFeed
 
     /**
      * return stories
-     * 
+     *
      * @param  SimpleXMLElement $xml
      * @return Array<SimpleXMLElement>
      */

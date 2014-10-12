@@ -12,7 +12,7 @@ namespace Rssr\Feed;
 /**
  *
  * Abstract implementation of a Feed
- * 
+ *
  * @author Matthew Wells <matthewpaulwells@gmail.com>
  * @package Rssr
  */

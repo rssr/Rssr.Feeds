@@ -16,7 +16,7 @@ use SimpleXMLElement;
  * Factory class for generating the proper class given an XML feed.
  *
  * @package  Rssr
- * 
+ *
  */
 class Factory
 {

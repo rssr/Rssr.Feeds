@@ -14,7 +14,7 @@ use SimpleXMLElement;
 /**
  *
  * Implementation of a Feed's Stories
- * 
+ *
  * @author Matthew Wells <matthewpaulwells@gmail.com>
  * @package Rssr
  */

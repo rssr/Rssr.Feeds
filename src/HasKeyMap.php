@@ -12,7 +12,7 @@ namespace Rssr\Feed;
 /**
  *
  * Normalize access to Atom and RSS feeds and stories
- * 
+ *
  * @author Matthew Wells <matthewpaulwells@gmail.com>
  * @package Rssr
  */
@@ -32,7 +32,7 @@ trait HaskeyMap
 
     /**
      * Access the data!
-     * 
+     *
      * @param  string $key
      * @return SimpleXMLElement
      */

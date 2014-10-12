@@ -16,7 +16,7 @@ use SimpleXMLElement;
  * RSS 2.0 implementation of the Feed class
  *
  * @package Rssr
- * 
+ *
  */
 class Rss extends AbstractFeed
 {
@@ -51,7 +51,7 @@ class Rss extends AbstractFeed
 
     /**
      * Initialize the RSS feed
-     * 
+     *
      * @param \SimpleXMLElement $xml
      */
     public function __construct(SimpleXMLElement $xml)
@@ -66,7 +66,7 @@ class Rss extends AbstractFeed
 
     /**
      * return the content
-     * 
+     *
      * @param  SimpleXMLElement $xml
      * @return SimpleXMLElement
      */
@@ -77,7 +77,7 @@ class Rss extends AbstractFeed
 
     /**
      * return stories
-     * 
+     *
      * @param  SimpleXMLElement $xml
      * @return Array<SimpleXMLElement>
      */
