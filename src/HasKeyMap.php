@@ -11,7 +11,7 @@ namespace Rssr\Feed;
 
 /**
  *
- * Normalize access to Atom and RSS feeds and stories
+ * Normalize access to feeds and stories
  *
  * @author Matthew Wells <matthewpaulwells@gmail.com>
  * @package Rssr

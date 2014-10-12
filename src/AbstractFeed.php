@@ -29,14 +29,14 @@ abstract class AbstractFeed implements FeedInterface
 
     /**
      * key map (unset) for feed story data
-     * @var Array
+     * @var array
      */
     protected $storyKeys = [];
 
 
     /**
      * Stories!
-     * @var \SimpleXMLElement[]
+     * @var \Rssr\Feed\Stories
      */
     protected $children = null;
 
@@ -103,7 +103,7 @@ abstract class AbstractFeed implements FeedInterface
     /**
      * return the array of feed stories
      *
-     * @return \SimpleXMLElement[]
+     * @return \Rssr\Feed\Stories
      */
     public function getStories()
     {

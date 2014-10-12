@@ -16,6 +16,11 @@ class AtomFeedTest extends \PHPUnit_Framework_TestCase
         unset($this->feed);
     }
 
+    public function testStoriesClass()
+    {
+        $this->assertInstanceOf('\Rssr\Feed\Stories', $this->feed->stories);
+    }
+
     public function testUpdateTime()
     {
         $this->assertEquals($this->feed->updateTime, '2003-12-13T18:30:02Z');

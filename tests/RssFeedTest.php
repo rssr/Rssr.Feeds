@@ -17,6 +17,11 @@ class RssTest extends \PHPUnit_Framework_TestCase
         unset($this->feed);
     }
 
+    public function testStoriesClass()
+    {
+        $this->assertInstanceOf('\Rssr\Feed\Stories', $this->feed->stories);
+    }
+
     public function testUpdateTime()
     {
         $this->assertEquals($this->feed->updateTime, 'Mon, 06 Sep 2010 00:01:00 +0000');
