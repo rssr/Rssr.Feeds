@@ -65,6 +65,23 @@ class Rss extends AbstractFeed
     }
 
     /**
+     * Initialize (validate data and instantiate)
+     * @param  mixed $data
+     * @return mixed
+     */
+    public static function init($data)
+    {
+        $xml = parent::init($data);
+        if (is_object($xml) &&
+            $xml instanceof SimpleXMLElement &&
+            $xml->getName() == 'rss') {
+            return new \Rssr\Feed\Rss($xml);
+        }
+
+        return false;
+    }
+
+    /**
      * return the content
      *
      * @param  SimpleXMLElement $xml

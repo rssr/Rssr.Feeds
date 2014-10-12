@@ -40,10 +40,24 @@ abstract class AbstractFeed
      */
     protected $children = null;
 
+    /**
+     * initialize the data
+     * @param  mixed $data
+     * @return mixed
+     */
+    public static function init($data)
+    {
+        if (is_string($data)) {
+            return simplexml_load_string($data);
+        }
+
+        return false;
+    }
+
 
     /**
      * Initialize a new Feed, given valid xml data
-     * 
+     *
      * @param \SimpleXMLElement $xml
      */
     public function __construct(\SimpleXMLElement $xml)
@@ -70,7 +84,7 @@ abstract class AbstractFeed
 
     /**
      * return the stories for the given `$xml` feed
-     * 
+     *
      * @param  SimpleXMLElement $xml
      * @return Array<\SimpleXMLElement>
      */
@@ -79,7 +93,7 @@ abstract class AbstractFeed
 
     /**
      * return the array of feed stories
-     * 
+     *
      * @return Array<\SimpleXMLElement>
      */
     public function getStories()

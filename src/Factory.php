@@ -24,35 +24,30 @@ class Factory
      * map of root XML nodes to class names
      * @var Array
      */
-    protected $types = [];
+    protected $handlers = [];
 
     /**
      * Add a feed type that will normalize feed data
-     * @param string $type
      * @param callable $handler
      */
-    public function addFeedType($type, callable $handler)
+    public function addHandler($handler)
     {
-        $this->types[$type] = $handler;
+        $this->handlers[] = $handler;
     }
 
     /**
-     * Initialize a new Feed given a SimpleXMLElement
-     * @param  $xml     String or SimpleXMLElement
+     * Initialize a new Feed
+     * @param mixed $data
      * @return \Rssr\Feed\Abstract      (Won't actually be abstract, but a child class of it)
      */
-    public function newFeed($xml)
+    public function newFeed($data)
     {
-        if (!$xml instanceof SimpleXMLElement) {
-            $xml = simplexml_load_string($xml);
+        foreach ($this->handlers as $handler) {
+            if ($resp = $handler::init($data)) {
+                return $resp;
+            }
         }
 
-        if (!isset($this->types[$xml->getName()])) {
-            throw new \Exception('Feed type ' . $xml->getName() . ' not supported!');
-        }
-
-        $handler = $this->types[$xml->getName()];
-
-        return $handler($xml);
+        return false;
     }
 }

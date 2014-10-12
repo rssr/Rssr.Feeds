@@ -7,44 +7,67 @@ use SimpleXMLElement;
 class FeedFactoryTest extends \PHPUnit_Framework_TestCase
 {
 
-    public function setUp()
+    protected function getFactory()
     {
-        $this->factory = new \Rssr\Feed\Factory;
-
-    }
-
-    public function tearDown()
-    {
-        unset($this->factory);
+        return new \Rssr\Feed\Factory;
     }
 
     public function testAtomCreation()
     {
-        $xml = new SimpleXMLElement(
-            file_get_contents(__DIR__ . '/samples/atom.xml'));
-       $this->factory->addFeedType('feed', function ($feedData)
-        {
-            return new \Rssr\Feed\Atom($feedData);
-        });
+        $data = file_get_contents(__DIR__ . '/samples/atom.xml');
+        $factory = $this->getFactory();
 
-        $feed = $this->factory->newFeed($xml);
+        $factory->addHandler(\Rssr\Feed\Atom::class);
+        $feed = $factory->newFeed($data);
 
         $this->assertInstanceOf('\Rssr\Feed\Atom', $feed);
     }
 
     public function testRssCreation()
     {
-        $xml = new SimpleXMLElement(
-            file_get_contents(__DIR__ . '/samples/rss.xml'));
+        $data = file_get_contents(__DIR__ . '/samples/rss.xml');
+        $factory = $this->getFactory();
+        $factory->addHandler(\Rssr\Feed\Rss::class);
 
-        $this->factory->addFeedType('rss', function ($feedData)
-        {
-            return new \Rssr\Feed\Rss($feedData);
-        });
-
-        $feed = $this->factory->newFeed($xml);
+        $feed = $factory->newFeed($data);
 
         $this->assertInstanceOf('\Rssr\Feed\Rss', $feed);
+    }
+
+    public function testNullData()
+    {
+        $data = null;
+        $factory = $this->getFactory();
+        $factory->addHandler(\Rssr\Feed\Rss::class);
+        $factory->addHandler(\Rssr\Feed\Atom::class);
+
+        $feed = $factory->newFeed($data);
+
+        $this->assertFalse($feed);
+    }
+
+    public function testArrayData()
+    {
+        $data = [];
+        $factory = $this->getFactory();
+        $factory->addHandler(\Rssr\Feed\Rss::class);
+        $factory->addHandler(\Rssr\Feed\Atom::class);
+
+        $feed = $factory->newFeed($data);
+
+        $this->assertFalse($feed);
+    }
+
+    public function testObjectData()
+    {
+        $data = new \stdClass;
+        $factory = $this->getFactory();
+        $factory->addHandler(\Rssr\Feed\Rss::class);
+        $factory->addHandler(\Rssr\Feed\Atom::class);
+
+        $feed = $factory->newFeed($data);
+
+        $this->assertFalse($feed);
     }
 
 }

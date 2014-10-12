@@ -68,7 +68,23 @@ class Atom extends AbstractFeed
         };
 
         parent::__construct($xml);
+    }
 
+    /**
+     * initialize (validate and instantiate) the feed
+     * @param  mixed $data
+     * @return mixed
+     */
+    public static function init($data)
+    {
+        $xml = parent::init($data);
+        if (is_object($xml) &&
+            $xml instanceof SimpleXMLElement &&
+            $xml->getName() == 'feed') {
+            return new \Rssr\Feed\Atom($xml);
+        }
+
+        return false;
     }
 
     /**
