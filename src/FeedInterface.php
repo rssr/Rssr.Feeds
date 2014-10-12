@@ -24,6 +24,11 @@ interface FeedInterface
      * @param  mixed $data
      * @return \Rssr\Feed\FeedInterface
      */
+
+namespace Rssr\Feed;
+
+interface FeedInterface
+{
     public static function init($data);
 
     /**
