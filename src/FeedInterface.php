@@ -18,17 +18,6 @@ namespace Rssr\Feed;
  */
 interface FeedInterface
 {
-
-    /**
-     * Validate data and return a new feed implementation
-     * @param  mixed $data
-     * @return \Rssr\Feed\FeedInterface
-     */
-
-namespace Rssr\Feed;
-
-interface FeedInterface
-{
     public static function init($data);
 
     /**
