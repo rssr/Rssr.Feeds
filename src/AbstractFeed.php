@@ -36,7 +36,7 @@ abstract class AbstractFeed
 
     /**
      * Stories!
-     * @var Array<SimpleXMLElement>
+     * @var \SimpleXMLElement[]
      */
     protected $children = null;
 
