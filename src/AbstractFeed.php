@@ -95,7 +95,7 @@ abstract class AbstractFeed
      * return the stories for the given `$xml` feed
      *
      * @param  SimpleXMLElement $xml
-     * @return Array<\SimpleXMLElement>
+     * @return \SimpleXMLElement[]
      */
     abstract protected function getChildren(\SimpleXMLElement $xml);
 
@@ -103,7 +103,7 @@ abstract class AbstractFeed
     /**
      * return the array of feed stories
      *
-     * @return Array<\SimpleXMLElement>
+     * @return \SimpleXMLElement[]
      */
     public function getStories()
     {
