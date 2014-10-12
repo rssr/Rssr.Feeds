@@ -17,7 +17,7 @@ class FeedFactoryTest extends \PHPUnit_Framework_TestCase
         $data = file_get_contents(__DIR__ . '/samples/atom.xml');
         $factory = $this->getFactory();
 
-        $factory->addHandler(\Rssr\Feed\Atom::class);
+        $factory->addHandler('\Rssr\Feed\Atom');
         $feed = $factory->newFeed($data);
 
         $this->assertInstanceOf('\Rssr\Feed\Atom', $feed);
