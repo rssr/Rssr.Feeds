@@ -38,7 +38,7 @@ class Factory
     /**
      * Initialize a new Feed
      * @param mixed $data
-     * @return \Rssr\Feed\Abstract      (Won't actually be abstract, but a child class of it)
+     * @return mixed
      */
     public function newFeed($data)
     {
