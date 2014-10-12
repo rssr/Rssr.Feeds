@@ -47,8 +47,17 @@ abstract class AbstractFeed
      */
     public static function init($data)
     {
-        if (is_string($data)) {
-            return simplexml_load_string($data);
+        if (!is_string($data)) {
+            return false;
+        }
+
+        $xml = simplexml_load_string($data);
+
+        if (is_object($xml) &&
+            $xml instanceof \SimpleXMLElement &&
+            $xml->getName() == static::FEED_TYPE) {
+            $className = get_called_class();
+            return new $className($xml);
         }
 
         return false;

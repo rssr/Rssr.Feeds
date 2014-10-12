@@ -9,8 +9,6 @@
  */
 namespace Rssr\Feed;
 
-use SimpleXMLElement;
-
 /**
  *
  * RSS 2.0 implementation of the Feed class
@@ -21,7 +19,7 @@ use SimpleXMLElement;
 class Rss extends AbstractFeed
 {
 
-    const FEED_TYPE = 'RSS';
+    const FEED_TYPE = 'rss';
 
     /**
      * key map for feed data
@@ -54,7 +52,7 @@ class Rss extends AbstractFeed
      *
      * @param \SimpleXMLElement $xml
      */
-    public function __construct(SimpleXMLElement $xml)
+    public function __construct(\SimpleXMLElement $xml)
     {
         $this->storyKeys['contentType'] = function()
         {
@@ -65,29 +63,12 @@ class Rss extends AbstractFeed
     }
 
     /**
-     * Initialize (validate data and instantiate)
-     * @param  mixed $data
-     * @return mixed
-     */
-    public static function init($data)
-    {
-        $xml = parent::init($data);
-        if (is_object($xml) &&
-            $xml instanceof SimpleXMLElement &&
-            $xml->getName() == 'rss') {
-            return new \Rssr\Feed\Rss($xml);
-        }
-
-        return false;
-    }
-
-    /**
      * return the content
      *
-     * @param  SimpleXMLElement $xml
-     * @return SimpleXMLElement
+     * @param  \SimpleXMLElement $xml
+     * @return \SimpleXMLElement
      */
-    protected function getContent(SimpleXMLElement $xml)
+    protected function getContent(\SimpleXMLElement $xml)
     {
         return $xml->channel;
     }
@@ -95,10 +76,10 @@ class Rss extends AbstractFeed
     /**
      * return stories
      *
-     * @param  SimpleXMLElement $xml
-     * @return Array<SimpleXMLElement>
+     * @param  \SimpleXMLElement $xml
+     * @return \SimpleXMLElement[]
      */
-    protected function getChildren(SimpleXMLElement $xml)
+    protected function getChildren(\SimpleXMLElement $xml)
     {
         return $xml->channel->item;
     }
