@@ -9,8 +9,6 @@
  */
 namespace Rssr\Feed\Collection;
 
-use SimpleXMLElement;
-
 /**
  *
  * Factory class for generating the proper class given an XML feed.
@@ -21,24 +19,27 @@ use SimpleXMLElement;
 class Factory
 {
     /**
-     * map of root XML nodes to class names
-     * @var Array
+     * classname of handler
+     * @var string
      */
     protected $handler = null;
 
     /**
      * Add a feed type that will normalize feed data
-     * @param callable $handler
+     * @param string $handler classname
      */
     public function setHandler($handler)
     {
+        if (!class_exists($handler)) {
+            throw new \Exception('Class "' . $handler . '" does not exist!');
+        }
+
         $this->handler = $handler;
     }
 
     /**
      * Initialize a new Feed
-     * @param mixed $data
-     * @return mixed
+     * @return object
      */
     public function newFeedCollection()
     {

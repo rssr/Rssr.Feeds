@@ -94,7 +94,7 @@ abstract class AbstractFeed implements FeedInterface
     /**
      * return the stories for the given `$xml` feed
      *
-     * @param  SimpleXMLElement $xml
+     * @param  \SimpleXMLElement $xml
      * @return \SimpleXMLElement[]
      */
     abstract protected function getChildren(\SimpleXMLElement $xml);
