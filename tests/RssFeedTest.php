@@ -12,11 +12,6 @@ class RssTest extends \PHPUnit_Framework_TestCase
             file_get_contents(__DIR__ . '/samples/rss.xml')));
     }
 
-    public function tearDown()
-    {
-        unset($this->feed);
-    }
-
     public function testStoriesClass()
     {
         $this->assertInstanceOf('\Rssr\Feed\Stories', $this->feed->stories);
