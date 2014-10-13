@@ -9,8 +9,6 @@
  */
 namespace Rssr\Feed;
 
-use SimpleXMLElement;
-
 /**
  *
  * Implementation of a Feed's Stories
@@ -20,9 +18,22 @@ use SimpleXMLElement;
  */
 class Stories implements \ArrayAccess, \Iterator
 {
-
+    /**
+     * Keys for story
+     * @var array
+     */
     protected $keys;
+
+    /**
+     * XML data
+     * @var \SimpleXMLElement
+     */
     protected $data;
+
+    /**
+     * current index
+     * @var int
+     */
     protected $storyIndex;
 
     /**
@@ -36,7 +47,7 @@ class Stories implements \ArrayAccess, \Iterator
      * @param \SimpleXMLElement $xml
      * @param array            $keys
      */
-    public function __construct(SimpleXMLElement $xml, array $keys)
+    public function __construct(\SimpleXMLElement $xml, array $keys = [])
     {
         $this->keys = $keys;
         $this->data = $xml;
@@ -44,16 +55,21 @@ class Stories implements \ArrayAccess, \Iterator
 
     /**
      * Required for \ArrayAccess implementation
-     * @param  $offset
-     * @param  $value
+     * @param  int $offset
+     * @param  int $value
+     * @return \Rssr\Feed\Stories
      */
     public function offsetSet($offset, $value)
-    {}
+    {
+        $this->data[$offset] = $value;
+
+        return $this;
+    }
 
     /**
      * Does the story exist?
      * @param  mixed $offset
-     * @return SimpleXMLElement
+     * @return boolean
      */
     public function offsetExists($offset)
     {
@@ -63,14 +79,19 @@ class Stories implements \ArrayAccess, \Iterator
     /**
      * Unused. Required by \ArrayAccess implementation
      * @param  mixed $offset
+     * @return \Rssr\Feed\Stories
      */
     public function offsetUnset($offset)
-    {}
+    {
+        unset($this->data[$offset]);
+
+        return $this;
+    }
 
     /**
      * Get the offset
-     * @param  mixed $offset
-     * @return \SimpleXMLElement
+     * @param int $offset
+     * @return mixed
      */
     public function offsetGet($offset)
     {
@@ -104,15 +125,20 @@ class Stories implements \ArrayAccess, \Iterator
      */
     public function next()
     {
-        $this->storyIndex += 1;
+        $this->storyIndex++;
+
+        return $this;
     }
 
     /**
      * Reset the iterator index
+     * @return \Rssr\Feed\Stories
      */
     public function rewind()
     {
         $this->storyIndex = 0;
+
+        return $this;
     }
 
     /**
