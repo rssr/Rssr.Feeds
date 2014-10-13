@@ -68,7 +68,7 @@ class Stories implements \ArrayAccess, \Iterator
 
     /**
      * Does the story exist?
-     * @param  mixed $offset
+     * @param  integer $offset
      * @return boolean
      */
     public function offsetExists($offset)
@@ -91,7 +91,7 @@ class Stories implements \ArrayAccess, \Iterator
     /**
      * Get the offset
      * @param int $offset
-     * @return mixed
+     * @return Story|null
      */
     public function offsetGet($offset)
     {
