@@ -97,7 +97,7 @@ abstract class AbstractFeed implements FeedInterface
     /**
      * return the array of feed stories
      *
-     * @return \Rssr\Feed\Stories
+     * @return Story\Collection
      */
     public function getStories()
     {

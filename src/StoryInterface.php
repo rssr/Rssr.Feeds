@@ -15,6 +15,7 @@ interface StoryInterface
      * set a value in storage
      * @param mixed $key
      * @param mixed $value
+     * @return void
      */
     public function __set($key, $value);
 }

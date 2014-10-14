@@ -25,7 +25,6 @@ class AtomStory implements StoryInterface
     /**
      * Initialize a Story
      * @param SimpleXMLElement $xml
-     * @param array            $getKeys
      */
     public function __construct(SimpleXMLElement $xml)
     {
