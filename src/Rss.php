@@ -25,42 +25,12 @@ class Rss extends AbstractFeed
      * key map for feed data
      * @var Array
      */
-    protected $keys = [
+    protected $getKeys = [
         'title'         => 'title',
         'link'          => 'link',
         'updateTime'    => 'lastBuildDate',
         'summary'       => 'description',
     ];
-
-    /**
-     * key map for feed story data
-     * @var Array
-     */
-    protected $storyKeys = [
-        'title'         => 'title',
-        'link'          => 'link',
-        'id'            => 'guid',
-        'updateTime'    => 'pubDate',
-        'summary'       => 'description',
-        'content'       => 'description',
-        'contentType'   => '',
-        'author'        => '',
-    ];
-
-    /**
-     * Initialize the RSS feed
-     *
-     * @param \SimpleXMLElement $xml
-     */
-    public function __construct(\SimpleXMLElement $xml)
-    {
-        $this->storyKeys['contentType'] = function()
-        {
-            return 'html';
-        };
-
-        parent::__construct($xml);
-    }
 
     /**
      * return the content
@@ -71,6 +41,13 @@ class Rss extends AbstractFeed
     protected function getContent(\SimpleXMLElement $xml)
     {
         return $xml->channel;
+    }
+
+    public function addStory(\SimpleXMLElement $child)
+    {
+        $story = new RssStory($child);
+        $this->children->addItem($story);
+        return $this;
     }
 
     /**

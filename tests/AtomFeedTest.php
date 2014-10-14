@@ -13,7 +13,7 @@ class AtomFeedTest extends \PHPUnit_Framework_TestCase
 
     public function testStoriesClass()
     {
-        $this->assertInstanceOf('\Rssr\Feed\Stories', $this->feed->stories);
+        $this->assertInstanceOf('\Rssr\Feed\Story\Collection', $this->feed->stories);
     }
 
     public function testUpdateTime()
@@ -28,17 +28,20 @@ class AtomFeedTest extends \PHPUnit_Framework_TestCase
 
     public function testStoryTitle()
     {
-        $this->assertEquals($this->feed->stories[0]->title, 'Atom-Powered Robots Run Amok');
+        $data = $this->feed->stories->item('urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a');
+        $this->assertEquals($data->title, 'Atom-Powered Robots Run Amok');
     }
 
     public function testStoryUpdateTime()
     {
-        $this->assertEquals($this->feed->stories[0]->updateTime, '2003-12-13T18:30:02Z');
+        $data = $this->feed->stories->item('urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a');
+        $this->assertEquals($data->updateTime, '2003-12-13T18:30:02Z');
     }
 
     public function testStoryLink()
     {
-        $this->assertEquals($this->feed->stories[0]->link, 'http://example.org/2003/12/13/atom03');
+        $data = $this->feed->stories->item('urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a');
+        $this->assertEquals($data->link, 'http://example.org/2003/12/13/atom03');
     }
 
 }

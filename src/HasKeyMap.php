@@ -19,10 +19,16 @@ namespace Rssr\Feed;
 trait HaskeyMap
 {
     /**
-     * key map
+     * __get key map
      * @var array
      */
-    protected $keys = [];
+    protected $getKeys = [];
+
+    /**
+     * __set key map
+     * @var array
+     */
+    protected $setKeys = [];
 
     /**
      * XML data
@@ -38,20 +44,26 @@ trait HaskeyMap
      */
     public function __get($key)
     {
-        if (!isset($this->keys[$key])) {
-
+        if (!isset($this->getKeys[$key])) {
             return null;
         }
 
-        $value = $this->keys[$key];
-
+        $value = $this->getKeys[$key];
 
         if (gettype($value) === 'object' && is_callable($value)) {
-
             return $value($this);
         }
 
         return $this->data->{$value};
+    }
+
+    public function __set($key, $data)
+    {
+        if (!array_key_exists($key, $this->setKeys)) {
+            return null;
+        }
+
+        $this->setKeys[$key] = $data;
     }
 
     /**

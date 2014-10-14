@@ -25,47 +25,18 @@ class Atom extends AbstractFeed
      * key map for feed data
      * @var Array
      */
-    protected $keys = [
+    protected $getKeys = [
         'title'         => 'title',
         'link'          => 'link',
         'updateTime'    => 'updated',
         'summary'       => 'subtitle'
     ];
 
-    /**
-     * key map for feed story data
-     * @var Array
-     */
-    protected $storyKeys = [
-        'title'         => 'title',
-        'link'          => '',
-        'id'            => 'id',
-        'updateTime'    => 'updated',
-        'summary'       => 'summary',
-        'content'       => 'content',
-        'contentType'   => '',
-        'author'        => '',
-    ];
-
-    /**
-     * Initialize an Atom feed
-     *
-     * @param \SimpleXMLElement $xml
-     */
-    public function __construct(\SimpleXMLElement $xml)
+    public function addStory(\SimpleXMLElement $child)
     {
-
-        $this->storyKeys['link'] = function($scope)
-        {
-            return $scope->getXml()->link['href'];
-        };
-
-        $this->storyKeys['contentType'] = function($scope)
-        {
-            return $scope->getXml()->content['type'];
-        };
-
-        parent::__construct($xml);
+        $story = new AtomStory($child);
+        $this->children->addItem($story);
+        return $this;
     }
 
     /**

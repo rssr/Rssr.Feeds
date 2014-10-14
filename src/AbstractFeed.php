@@ -20,23 +20,14 @@ abstract class AbstractFeed implements FeedInterface
 {
     use HasKeyMap;
 
-
     /**
      * @var type of feed (unset)
      */
     const FEED_TYPE = '';
 
-
-    /**
-     * key map (unset) for feed story data
-     * @var array
-     */
-    protected $storyKeys = [];
-
-
     /**
      * Stories!
-     * @var \Rssr\Feed\Stories
+     * @var \Rssr\Feed\Story\Collection
      */
     protected $children = null;
 
@@ -71,14 +62,17 @@ abstract class AbstractFeed implements FeedInterface
      */
     public function __construct(\SimpleXMLElement $xml)
     {
-        $this->keys['stories'] = function()
-            {
-                return $this->children;
-            };
-
+        $this->getKeys['stories'] = function()
+        {
+            return $this->children;
+        };
 
         $this->data = $this->getContent($xml);
-        $this->children = new Stories($this->getChildren($xml), $this->storyKeys);
+
+        $this->children = new Story\Collection;
+        foreach ($this->getChildren($xml) as $child) {
+            $this->addStory($child);
+        }
     }
 
 
