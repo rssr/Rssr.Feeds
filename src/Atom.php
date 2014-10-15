@@ -32,8 +32,11 @@ class Atom extends AbstractFeed
         'summary'       => 'subtitle'
     ];
 
-    public function addStory(\SimpleXMLElement $child)
+    public function addStory($child)
     {
+        if ($child instanceof \SimpleXMLElement == false) {
+            throw new \Exception('Children of atom feeds must be added with SimpleXMLElement objects');
+        }
         $story = new AtomStory($child);
         $this->children->addItem($story);
         return $this;

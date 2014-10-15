@@ -43,8 +43,11 @@ class Rss extends AbstractFeed
         return $xml->channel;
     }
 
-    public function addStory(\SimpleXMLElement $child)
+    public function addStory($child)
     {
+        if ($child instanceof \SimpleXMLElement == false) {
+            throw new \Exception('Children of rss feeds must be added with SimpleXMLElement objects');
+        }
         $story = new RssStory($child);
         $this->children->addItem($story);
         return $this;

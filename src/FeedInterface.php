@@ -29,8 +29,8 @@ interface FeedInterface
 
     /**
      * Add a story
-     * @param \SimpleXMLElement $child
+     * @param object $child
      * @return \Rssr\Feed\FeedInterface
      */
-    public function addStory(\SimpleXMLElement $child);
+    public function addStory($child);
 }
