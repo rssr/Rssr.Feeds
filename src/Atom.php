@@ -21,6 +21,8 @@ class Atom extends AbstractFeed
 
     const FEED_TYPE = 'feed';
 
+    protected $storyType = '\Rssr\Feed\AtomStory';
+
     /**
      * key map for feed data
      * @var Array
@@ -31,16 +33,6 @@ class Atom extends AbstractFeed
         'updateTime'    => 'updated',
         'summary'       => 'subtitle'
     ];
-
-    public function addStory($child)
-    {
-        if ($child instanceof \SimpleXMLElement == false) {
-            throw new \Exception('Children of atom feeds must be added with SimpleXMLElement objects');
-        }
-        $story = new AtomStory($child);
-        $this->children->addItem($story);
-        return $this;
-    }
 
     /**
      * return the content

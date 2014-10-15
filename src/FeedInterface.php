@@ -18,6 +18,12 @@ namespace Rssr\Feed;
  */
 interface FeedInterface
 {
+
+    /**
+     * initialize the data
+     * @param  mixed $data
+     * @return mixed
+     */
     public static function init($data);
 
     /**

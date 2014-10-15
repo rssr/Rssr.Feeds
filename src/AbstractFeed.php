@@ -20,6 +20,8 @@ abstract class AbstractFeed implements FeedInterface
 {
     use HasKeyMap;
 
+    protected $storyType = null;
+
     /**
      * @var type of feed (unset)
      */
@@ -32,9 +34,7 @@ abstract class AbstractFeed implements FeedInterface
     protected $children = null;
 
     /**
-     * initialize the data
-     * @param  mixed $data
-     * @return mixed
+     * {@inhertiDoc}
      */
     public static function init($data)
     {
@@ -95,9 +95,20 @@ abstract class AbstractFeed implements FeedInterface
 
 
     /**
-     * return the array of feed stories
-     *
-     * @return Story\Collection
+     * {@inheritDoc}
+     */
+    public function addStory($child)
+    {
+        if ($child instanceof \SimpleXMLElement == false) {
+            throw new \Exception('Children of feeds must be added with SimpleXMLElement objects');
+        }
+        $story = new $this->storyType($child);
+        $this->children->addItem($story);
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public function getStories()
     {

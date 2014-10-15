@@ -21,6 +21,8 @@ class Rss extends AbstractFeed
 
     const FEED_TYPE = 'rss';
 
+    protected $storyType = '\Rssr\Feed\RssStory';
+
     /**
      * key map for feed data
      * @var Array
@@ -41,16 +43,6 @@ class Rss extends AbstractFeed
     protected function getContent(\SimpleXMLElement $xml)
     {
         return $xml->channel;
-    }
-
-    public function addStory($child)
-    {
-        if ($child instanceof \SimpleXMLElement == false) {
-            throw new \Exception('Children of rss feeds must be added with SimpleXMLElement objects');
-        }
-        $story = new RssStory($child);
-        $this->children->addItem($story);
-        return $this;
     }
 
     /**
