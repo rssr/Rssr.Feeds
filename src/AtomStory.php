@@ -21,6 +21,7 @@ use SimpleXMLElement;
 class AtomStory implements StoryInterface
 {
     use HasKeyMap;
+    use InitsIdGetKey;
 
     /**
      * Initialize a Story
@@ -30,6 +31,7 @@ class AtomStory implements StoryInterface
     {
         $this->data = $xml;
         $this->getKeys = [
+            'id'            => 'id',
             'title'         => 'title',
             'updateTime'    => 'updated',
             'summary'       => 'summary',
@@ -37,14 +39,7 @@ class AtomStory implements StoryInterface
             'author'        => '',
         ];
 
-        $this->getKeys['id'] = function () use($xml)
-        {
-            if (strlen((string)$xml->id)) {
-                return (string)$xml->id;
-            }
-
-            return md5((string)$xml->title . (string)$xml->link);
-        };
+        $this->initIdKey($xml);
 
         $this->getKeys['link'] = function() use($xml)
         {

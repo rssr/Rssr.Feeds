@@ -19,6 +19,7 @@ namespace Rssr\Feed;
 class RssStory implements StoryInterface
 {
     use HasKeyMap;
+    use InitsIdGetKey;
 
     /**
      * Initialize a Story
@@ -30,6 +31,7 @@ class RssStory implements StoryInterface
         $this->getKeys = [
             'title'         => 'title',
             'link'          => 'link',
+            'id'            => 'guid',
             'updateTime'    => 'pubDate',
             'summary'       => 'description',
             'content'       => 'description',
@@ -37,13 +39,6 @@ class RssStory implements StoryInterface
             'author'        => '',
         ];
 
-        $this->getKeys['id'] = function () use($xml)
-        {
-            if (strlen((string)$xml->guid)) {
-                return (string)$xml->guid;
-            }
-
-            return md5((string)$xml->title . (string)$xml->link);
-        };
+        $this->initIdKey($xml);
     }
 }
