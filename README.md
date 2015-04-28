@@ -52,3 +52,5 @@ $feed = $factory->newFeed($unknownType);
 ## Extending functionality
 
 By creating a class that implements `Rssr\Feed\FeedInterface`, you can add another feed type (maybe a database type!) to handle data from a different source but interact with the feed the same way
+
+Test addition
