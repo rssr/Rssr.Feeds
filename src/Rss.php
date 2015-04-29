@@ -16,8 +16,7 @@ namespace Rssr\Feed;
  * @package Rssr
  *
  */
-class Rss extends AbstractFeed
-{
+class Rss extends AbstractFeed {
 
     const FEED_TYPE = 'rss';
 
